@@ -10,7 +10,7 @@ export default function Home() {
 
   useEffect(() => {
     // Fetch featured products (simplified: just get all and take 3)
-    fetch('http://localhost:5000/api/products')
+    fetch('/api/products')
       .then(res => res.json())
       .then(data => setFeaturedProducts(data.slice(0, 4)))
       .catch(err => console.error("API Error", err));
