@@ -72,6 +72,7 @@ export default function Footer() {
                         <h4 style={{ fontSize: '18px', fontWeight: 800, fontStyle: 'italic', marginBottom: '8px', textTransform: 'uppercase' }}>Quick Links</h4>
                         <div style={{ width: '40px', height: '4px', background: '#fbbf24', marginBottom: '24px' }}></div>
                         <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                            <li><Link href="/shop" style={{ color: '#cbd5e1', textDecoration: 'none', fontSize: '14px' }}>All Products</Link></li>
                             <li><Link href="/track-order" style={{ color: '#cbd5e1', textDecoration: 'none', fontSize: '14px' }}>Track Your Order</Link></li>
                             <li><Link href="/returns" style={{ color: '#cbd5e1', textDecoration: 'none', fontSize: '14px' }}>Returns & Exchanges</Link></li>
                             <li><Link href="/shipping" style={{ color: '#cbd5e1', textDecoration: 'none', fontSize: '14px' }}>Shipping Information</Link></li>

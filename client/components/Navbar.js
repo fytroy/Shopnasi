@@ -31,10 +31,15 @@ export default function Navbar() {
             {/* Main Navbar */}
             <nav className="glass-header" style={{ position: 'sticky', top: 0, zIndex: 100, borderBottom: '1px solid var(--border-color)', background: 'rgba(255, 255, 255, 0.95)' }}>
                 <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: '80px', gap: '40px' }}>
-                    {/* Logo */}
-                    <Link href="/" style={{ fontSize: '28px', fontWeight: '900', fontStyle: 'italic', letterSpacing: '-1px', display: 'flex', alignItems: 'center' }}>
-                        SHOPNASI
-                    </Link>
+                    {/* Logo & Nav Links */}
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '32px' }}>
+                        <Link href="/" style={{ fontSize: '28px', fontWeight: '900', fontStyle: 'italic', letterSpacing: '-1px', display: 'flex', alignItems: 'center' }}>
+                            SHOPNASI
+                        </Link>
+                        <Link href="/shop" style={{ fontSize: '16px', fontWeight: 600, color: '#0f172a', textDecoration: 'none' }}>
+                            Products
+                        </Link>
+                    </div>
 
                     {/* Search Bar */}
                     <form onSubmit={handleSearch} style={{ flex: 1, maxWidth: '600px', position: 'relative' }}>
@@ -65,8 +70,6 @@ export default function Navbar() {
                             <a href="#" style={{ display: 'flex', alignItems: 'center' }}><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
                             {/* WhatsApp */}
                             <a href="#" style={{ display: 'flex', alignItems: 'center' }}><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg></a>
-                            {/* TikTok (Music note as proxy or custom path) */}
-                            <a href="#" style={{ display: 'flex', alignItems: 'center' }}><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg></a>
                         </div>
 
                         {/* Store Icons */}
