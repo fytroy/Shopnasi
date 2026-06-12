@@ -1,42 +1,43 @@
 import Head from 'next/head';
 import Navbar from '../components/Navbar';
 import { useState } from 'react';
+import { useStore } from '../context/StoreContext';
 
 export default function Checkout() {
+    const { cart, cartCount } = useStore();
     const [formData, setFormData] = useState({
         email: '',
         address: '',
         city: '',
         zip: '',
-        card: ''
     });
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(false);
+
+    const totalAmount = cart.reduce((sum, item) => sum + (item.price_retail * item.quantity), 0);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
         setError(null);
 
-        // Basic client-side validation
         if (!formData.email.includes('@')) {
             setError("Please enter a valid email address.");
             setLoading(false);
             return;
         }
 
-        // Mock API call
         try {
-            const res = await fetch('http://localhost:5000/api/orders', {
+            const res = await fetch('/api/orders', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    userId: 3, // Guest/Consumer ID
-                    totalAmount: 450, // Mock total
+                    userId: null,
+                    totalAmount,
                     paymentMethod: 'credit_card',
                     shippingAddress: { ...formData },
-                    items: [{ productId: 1, quantity: 1, price: 450 }]
+                    items: cart.map(item => ({ productId: item.id, quantity: item.quantity, price: item.price_retail }))
                 })
             });
             const data = await res.json();
@@ -55,9 +56,12 @@ export default function Checkout() {
     const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
 
     if (success) return (
-        <div style={{ textAlign: 'center', padding: '100px' }}>
+        <div style={{ background: 'rgb(var(--background-end-rgb))', minHeight: '100vh' }}>
+            <Head>
+                <title>Order Confirmed | Shopnasi</title>
+            </Head>
             <Navbar />
-            <div className="container">
+            <div className="container" style={{ padding: '100px 24px', textAlign: 'center' }}>
                 <h1 style={{ color: 'green', marginBottom: '24px' }}>Order Confirmed!</h1>
                 <p>Thank you for your purchase. A confirmation email has been sent.</p>
             </div>
@@ -65,7 +69,7 @@ export default function Checkout() {
     );
 
     return (
-        <div style={{ background: 'var(--background-end-rgb)', minHeight: '100vh' }}>
+        <div style={{ background: 'rgb(var(--background-end-rgb))', minHeight: '100vh' }}>
             <Head>
                 <title>Checkout | Shopnasi</title>
             </Head>
@@ -111,8 +115,13 @@ export default function Checkout() {
 
                         {error && <div style={{ color: 'red', marginBottom: '16px' }}>{error}</div>}
 
-                        <button type="submit" disabled={loading} className="btn" style={{ width: '100%', padding: '16px' }}>
-                            {loading ? 'Processing...' : 'Place Order'}
+                        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '16px', fontSize: '16px', fontWeight: 600 }}>
+                            <span>Order Total</span>
+                            <span>KSh {totalAmount.toLocaleString()}</span>
+                        </div>
+
+                        <button type="submit" disabled={loading || cartCount === 0} className="btn" style={{ width: '100%', padding: '16px' }}>
+                            {loading ? 'Processing...' : cartCount === 0 ? 'Cart is empty' : 'Place Order'}
                         </button>
                     </form>
                 </div>

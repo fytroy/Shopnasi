@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import Navbar from '../../components/Navbar';
+import Footer from '../../components/Footer';
 import ProductCard from '../../components/ProductCard';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
@@ -26,11 +27,10 @@ export default function ProductDetails() {
 
                 // Fetch related products based on category
                 if (data && data.category) {
-                    fetch(`/api/products?category=${data.category}`)
+                    fetch(`/api/products?category=${data.category}&limit=5`)
                         .then(res => res.json())
-                        .then(related => {
-                            // Filter out current product and limit to 4
-                            const filtered = related.filter(p => p.id !== data.id).slice(0, 4);
+                        .then(data2 => {
+                            const filtered = (data2.products || []).filter(p => p.id !== data.id).slice(0, 4);
                             setRelatedProducts(filtered);
                         });
                 }
@@ -57,7 +57,7 @@ export default function ProductDetails() {
             <Navbar />
 
             <main className="container" style={{ padding: '60px 24px' }}>
-                <div style={{ display: 'flex', gap: '60px', alignItems: 'flex-start', marginBottom: '80px' }}>
+                <div className="product-detail-layout" style={{ display: 'flex', gap: '60px', alignItems: 'flex-start', marginBottom: '80px' }}>
                     {/* Large Product Image (Left) */}
                     <div style={{ flex: 1, background: '#f8fafc', padding: '60px', borderRadius: 'var(--radius)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                         <img
@@ -145,6 +145,7 @@ export default function ProductDetails() {
                     </section>
                 )}
             </main>
+            <Footer />
         </div>
     );
 }

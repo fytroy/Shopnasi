@@ -5,7 +5,7 @@ export default function Footer() {
         <footer>
             {/* Value Props / Trust Signals */}
             <section style={{ background: '#f8fafc', padding: '60px 0', borderTop: '1px solid var(--border-color)' }}>
-                <div className="container" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '24px', textAlign: 'left' }}>
+                <div className="container footer-trust" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '24px', textAlign: 'left' }}>
 
                     {/* Trustscore */}
                     <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
@@ -56,7 +56,7 @@ export default function Footer() {
 
             {/* Main Footer Content */}
             <section style={{ background: '#000', color: 'white', padding: '60px 0' }}>
-                <div className="container" style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr', gap: '40px' }}>
+                <div className="container footer-grid" style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr', gap: '40px' }}>
                     {/* Brand / About */}
                     <div>
                         <Link href="/" style={{ fontSize: '28px', fontWeight: '900', fontStyle: 'italic', letterSpacing: '-1px', color: 'white', textDecoration: 'none', display: 'block', marginBottom: '24px' }}>
@@ -90,7 +90,7 @@ export default function Footer() {
                             <li><Link href="/shop?category=Gaming" style={{ color: '#cbd5e1', textDecoration: 'none', fontSize: '14px' }}>Gaming</Link></li>
                             <li><Link href="/shop?category=Monitors" style={{ color: '#cbd5e1', textDecoration: 'none', fontSize: '14px' }}>Monitors</Link></li>
                             <li><Link href="/shop?category=TVs" style={{ color: '#cbd5e1', textDecoration: 'none', fontSize: '14px' }}>TVs</Link></li>
-                            <li><Link href="/shop?category=Smartwatches" style={{ color: '#cbd5e1', textDecoration: 'none', fontSize: '14px' }}>Watches</Link></li>
+                            <li><Link href="/shop?category=Audio" style={{ color: '#cbd5e1', textDecoration: 'none', fontSize: '14px' }}>Audio</Link></li>
                         </ul>
                     </div>
 

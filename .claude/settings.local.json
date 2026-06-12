@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Invoke-WebRequest -Uri \"http://localhost:3000/api/products?category=TVs\" -UseBasicParsing)",
+      "WebFetch(domain:www.samsung.com)",
+      "WebFetch(domain:www.samsungmobilepress.com)",
+      "WebFetch(domain:www.gsmarena.com)",
+      "WebFetch(domain:www.amazon.com)",
+      "WebSearch"
+    ]
+  }
+}

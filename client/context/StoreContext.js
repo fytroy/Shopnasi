@@ -27,10 +27,13 @@ export function StoreProvider({ children }) {
         setCart(prev => {
             const existing = prev.find(item => item.id === product.id);
             if (existing) {
+                const newQty = existing.quantity + quantity;
+                if (newQty <= 0) return prev.filter(item => item.id !== product.id);
                 return prev.map(item =>
-                    item.id === product.id ? { ...item, quantity: item.quantity + quantity } : item
+                    item.id === product.id ? { ...item, quantity: newQty } : item
                 );
             }
+            if (quantity <= 0) return prev;
             return [...prev, { ...product, quantity }];
         });
     };

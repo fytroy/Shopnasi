@@ -3,7 +3,7 @@ import Footer from '../components/Footer';
 
 export default function Page({ title, content }) {
     return (
-        <div style={{ background: 'var(--background-end-rgb)', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+        <div style={{ background: 'rgb(var(--background-end-rgb))', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
             <Navbar />
             <main className="container" style={{ padding: '60px 24px', flex: 1 }}>
                 <h1 style={{ fontSize: '32px', fontWeight: 800, marginBottom: '24px' }}>{title}</h1>
@@ -16,6 +16,3 @@ export default function Page({ title, content }) {
     );
 }
 
-export function getStaticProps() {
-    return { props: { title: 'Information', content: '' } };
-}

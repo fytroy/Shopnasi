@@ -10,9 +10,9 @@ export default function Home() {
 
   useEffect(() => {
     // Fetch featured products (simplified: just get all and take 3)
-    fetch('/api/products')
+    fetch('/api/products?limit=4&sort=newest')
       .then(res => res.json())
-      .then(data => setFeaturedProducts(data.slice(0, 4)))
+      .then(data => setFeaturedProducts(data.products || []))
       .catch(err => console.error("API Error", err));
   }, []);
 
@@ -21,7 +21,7 @@ export default function Home() {
   };
 
   return (
-    <div style={{ background: 'var(--background-end-rgb)', minHeight: '100vh', position: 'relative' }}>
+    <div style={{ background: 'rgb(var(--background-end-rgb))', minHeight: '100vh', position: 'relative' }}>
       <Head>
         <title>Shopnasi | Premium Electronics</title>
         <meta name="description" content="High-performance electronics for professionals and enthusiasts." />
@@ -47,7 +47,7 @@ export default function Home() {
         </section>
 
         {/* Category Grid */}
-        <section style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', height: '400px', marginBottom: '80px' }}>
+        <section className="category-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', height: '400px', marginBottom: '80px' }}>
           {/* Headphones */}
           <div style={{ position: 'relative', height: '100%', overflow: 'hidden', group: 'hover' }}>
             <img src="/categories/headphones.png" alt="Headphones" style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s' }} />
@@ -96,7 +96,7 @@ export default function Home() {
 
         {/* Deals of the Day */}
         <section className="container" style={{ marginBottom: '80px' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '24px' }}>
+          <div className="deals-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '24px' }}>
             {/* Title Card */}
             <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'flex-start' }}>
               <h2 style={{ fontSize: '48px', fontWeight: 900, fontStyle: 'italic', lineHeight: '1', marginBottom: '16px' }}>
